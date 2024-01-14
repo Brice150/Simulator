@@ -1,0 +1,79 @@
+<div class="main-container">
+  <div class="left-container">
+    <span class="title"> Estimez votre prime selon les travaux souhaités </span>
+    <hr />
+    <div class="container">
+      <i class="bx bxs-group"></i>
+      <div class="content">
+        <span>Indiquez le nombre de personnes vivant dans le logement</span>
+        <div class="sub-container">
+          <div class="button change" (click)="minusOne()">
+            <i class="bx bx-minus"></i>
+          </div>
+          <div class="number">{{ habitantsNumber }}</div>
+          <div class="button change" (click)="plusOne()">
+            <i class="bx bx-plus"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <i class="bx bxs-home"></i>
+      <div class="content">
+        <span>Indiquez le revenu fiscal de votre foyer</span>
+        <div class="sub-container">
+          <input
+            type="number"
+            min="0"
+            placeholder="15 600 €"
+            [(ngModel)]="price"
+            (ngModelChange)="priceChange()"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <i class="bx bxs-briefcase-alt-2"></i>
+      <div class="content">
+        <span>Votre projet</span>
+        <div class="sub-container">
+          <div
+            class="button choose selected"
+            [ngClass]="{ selected: globaleSelected }"
+            (click)="selectGlobale()"
+          >
+            <span>Rénovation globale</span>
+          </div>
+          <div
+            class="button choose"
+            [ngClass]="{ selected: gesteSelected }"
+            (click)="selectGeste()"
+          >
+            <span>Par geste</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container" *ngIf="gesteSelected">
+      <div class="sub-container">
+        <select [(ngModel)]="workType" (ngModelChange)="workTypeChange()">
+          <option value="" disabled selected hidden>
+            Choisissez le type de travaux
+          </option>
+          <option value="renovation">Rénovation</option>
+          <option value="rafraichissement">Rafraichissement</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="right-container" *ngIf="displayGeste || displayGlobale">
+    <app-globale
+      *ngIf="displayGlobale"
+      [estimationPercent]="estimationPercent"
+    ></app-globale>
+    <app-geste
+      *ngIf="displayGeste"
+      [estimationEuros]="estimationEuros"
+    ></app-geste>
+  </div>
+</div>
