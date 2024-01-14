@@ -1,5 +1,10 @@
 import { PriceListMap } from '../../core/interfaces/priceListMap';
 
+export const latestPrices: number[] = [40002, 40003, 51281, 51282, 72400];
+export const increments: number[] = [5045, 5046, 6462, 6463, 9165];
+export const estimationEurosList: number[] = [4000, 3000, 2000, 1000];
+export const estimationPercentList: number[] = [80, 60, 50, 35];
+
 export const priceLists: PriceListMap = {
   1: [
     'Inférieur à 17009€',

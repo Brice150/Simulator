@@ -3,8 +3,13 @@ import { Component } from '@angular/core';
 import { GesteModule } from './geste/geste.module';
 import { GlobaleModule } from './globale/globale.module';
 import { FormsModule } from '@angular/forms';
-import { priceLists } from '../shared/data/priceLists';
-import { increments, latestPrices } from '../shared/data/priceIncrements';
+import {
+  estimationEurosList,
+  estimationPercentList,
+  increments,
+  latestPrices,
+  priceLists,
+} from '../shared/data/data';
 
 @Component({
   selector: 'app-page',
@@ -15,7 +20,7 @@ import { increments, latestPrices } from '../shared/data/priceIncrements';
 })
 export class PageComponent {
   habitantsNumber: number = 1;
-  price!: string | null;
+  price!: number | null;
   workType: string = '';
   displayGeste: boolean = false;
   displayGlobale: boolean = false;
@@ -84,9 +89,11 @@ export class PageComponent {
     if (this.globaleSelected && this.price) {
       this.displayGeste = false;
       this.displayGlobale = true;
+      this.estimationPercent = estimationPercentList[this.price];
     } else if (this.gesteSelected && this.price && this.workType !== '') {
       this.displayGeste = true;
       this.displayGlobale = false;
+      this.estimationEuros = estimationEurosList[this.price];
     } else {
       this.displayGeste = false;
       this.displayGlobale = false;

@@ -23,7 +23,10 @@
         <span>Indiquez le revenu fiscal de votre foyer</span>
         <div class="sub-container">
           <select [(ngModel)]="price" (ngModelChange)="priceChange()">
-            <option *ngFor="let value of priceList" [value]="value">
+            <option
+              *ngFor="let value of priceList; let index = index"
+              [value]="index"
+            >
               {{ value }}
             </option>
           </select>
