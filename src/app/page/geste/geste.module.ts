@@ -4,7 +4,7 @@ import { GesteComponent } from './geste.component';
 
 @NgModule({
   declarations: [GesteComponent],
-  imports: [CommonModule],
   exports: [GesteComponent],
+  imports: [CommonModule],
 })
 export class GesteModule {}

@@ -4,11 +4,12 @@ import { GesteModule } from './geste/geste.module';
 import { GlobaleModule } from './globale/globale.module';
 import { FormsModule } from '@angular/forms';
 import {
-  estimationEurosList,
+  estimationEurosLists,
   estimationPercentList,
   increments,
   latestPrices,
   priceLists,
+  workTypes,
 } from '../shared/data/data';
 
 @Component({
@@ -21,16 +22,17 @@ import {
 export class PageComponent {
   habitantsNumber: number = 1;
   price!: number | null;
-  workType: string = '';
+  workType!: number | null;
   displayGeste: boolean = false;
   displayGlobale: boolean = false;
-  estimationEuros!: number;
+  estimationEuros!: string;
   estimationPercent!: number;
   globaleSelected: boolean = true;
   gesteSelected: boolean = false;
   priceList: string[] = priceLists[1];
   increments: number[] = increments;
   latestPrices: number[] = latestPrices;
+  workTypes: string[] = workTypes;
 
   plusOne(): void {
     this.habitantsNumber = this.habitantsNumber + 1;
@@ -56,10 +58,10 @@ export class PageComponent {
           this.latestPrices[i] +
           this.increments[i] * (this.habitantsNumber - 5);
       }
-      this.priceList[0] = `Inférieur à ${this.latestPrices[0]}€`;
-      this.priceList[1] = `Entre ${this.latestPrices[1]}€ et ${this.latestPrices[2]}€`;
-      this.priceList[2] = `Entre ${this.latestPrices[3]}€ et ${this.latestPrices[4]}€`;
-      this.priceList[3] = `Supérieur à ${this.latestPrices[4]}€`;
+      this.priceList[0] = `Inférieur à ${this.latestPrices[0]} €`;
+      this.priceList[1] = `Entre ${this.latestPrices[1]} € et ${this.latestPrices[2]} €`;
+      this.priceList[2] = `Entre ${this.latestPrices[3]} € et ${this.latestPrices[4]} €`;
+      this.priceList[3] = `Supérieur à ${this.latestPrices[4]} €`;
     }
     this.price = null;
     this.handleDisplay();
@@ -90,10 +92,10 @@ export class PageComponent {
       this.displayGeste = false;
       this.displayGlobale = true;
       this.estimationPercent = estimationPercentList[this.price];
-    } else if (this.gesteSelected && this.price && this.workType !== '') {
+    } else if (this.gesteSelected && this.price && this.workType) {
       this.displayGeste = true;
       this.displayGlobale = false;
-      this.estimationEuros = estimationEurosList[this.price];
+      this.estimationEuros = estimationEurosLists[this.workType][this.price];
     } else {
       this.displayGeste = false;
       this.displayGlobale = false;

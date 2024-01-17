@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './geste.component.css',
 })
 export class GesteComponent {
-  @Input() estimationEuros!: number;
+  @Input() estimationEuros!: string;
 }

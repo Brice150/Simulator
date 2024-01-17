@@ -56,14 +56,18 @@
       </div>
     </div>
     <div class="container" *ngIf="gesteSelected">
-      <div class="sub-container">
-        <select [(ngModel)]="workType" (ngModelChange)="workTypeChange()">
-          <option value="" disabled selected hidden>
-            Choisissez le type de travaux
-          </option>
-          <option value="renovation">Rénovation</option>
-          <option value="rafraichissement">Rafraichissement</option>
-        </select>
+      <div class="content">
+        <span>Choisissez le type de travaux</span>
+        <div class="sub-container">
+          <select [(ngModel)]="workType" (ngModelChange)="workTypeChange()">
+            <option
+              *ngFor="let value of workTypes; let index = index"
+              [value]="index"
+            >
+              {{ value }}
+            </option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
