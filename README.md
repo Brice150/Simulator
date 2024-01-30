@@ -11,9 +11,15 @@ Frontend : Angular
 
 ### Form
 
+- Select the number of persons living with you, your yearly income and the type of work that needs to be made in order to make your home more eco-friendly
+
 ### Globale
 
+- View the percentage of renovation subsidies that can be applied in your case
+
 ### Geste
+
+- View the amount of renovation subsidies that can be applied in your case
 
 </details>
 
