@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-geste',
@@ -8,5 +8,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './geste.component.css',
 })
 export class GesteComponent {
-  @Input() estimationEuros!: string;
+  readonly estimationEuros = input.required<string>();
 }

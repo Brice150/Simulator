@@ -23,12 +23,13 @@
         <span>Indiquez le revenu fiscal de votre foyer</span>
         <div class="sub-container">
           <select [(ngModel)]="price" (ngModelChange)="priceChange()">
-            <option
-              *ngFor="let value of priceList; let index = index"
-              [value]="index"
-            >
-              {{ value }}
-            </option>
+            @for (value of priceList; track value; let index = $index) {
+              <option
+                [value]="index"
+                >
+                {{ value }}
+              </option>
+            }
           </select>
         </div>
       </div>
@@ -42,43 +43,50 @@
             class="button choose selected"
             [ngClass]="{ selected: globaleSelected }"
             (click)="selectGlobale()"
-          >
+            >
             <span>Rénovation globale</span>
           </div>
           <div
             class="button choose"
             [ngClass]="{ selected: gesteSelected }"
             (click)="selectGeste()"
-          >
+            >
             <span>Par geste</span>
           </div>
         </div>
       </div>
     </div>
-    <div class="container" *ngIf="gesteSelected">
-      <div class="content">
-        <span>Choisissez le type de travaux</span>
-        <div class="sub-container">
-          <select [(ngModel)]="workType" (ngModelChange)="workTypeChange()">
-            <option
-              *ngFor="let value of workTypes; let index = index"
-              [value]="index"
-            >
-              {{ value }}
-            </option>
-          </select>
+    @if (gesteSelected) {
+      <div class="container">
+        <div class="content">
+          <span>Choisissez le type de travaux</span>
+          <div class="sub-container">
+            <select [(ngModel)]="workType" (ngModelChange)="workTypeChange()">
+              @for (value of workTypes; track value; let index = $index) {
+                <option
+                  [value]="index"
+                  >
+                  {{ value }}
+                </option>
+              }
+            </select>
+          </div>
         </div>
       </div>
+    }
+  </div>
+  @if (displayGeste || displayGlobale) {
+    <div class="right-container">
+      @if (displayGlobale) {
+        <app-globale
+          [estimationPercent]="estimationPercent"
+        ></app-globale>
+      }
+      @if (displayGeste) {
+        <app-geste
+          [estimationEuros]="estimationEuros"
+        ></app-geste>
+      }
     </div>
-  </div>
-  <div class="right-container" *ngIf="displayGeste || displayGlobale">
-    <app-globale
-      *ngIf="displayGlobale"
-      [estimationPercent]="estimationPercent"
-    ></app-globale>
-    <app-geste
-      *ngIf="displayGeste"
-      [estimationEuros]="estimationEuros"
-    ></app-geste>
-  </div>
+  }
 </div>
