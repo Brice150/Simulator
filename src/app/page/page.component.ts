@@ -13,11 +13,10 @@ import {
 } from '../shared/data/data';
 
 @Component({
-  selector: 'app-page',
-  standalone: true,
-  imports: [CommonModule, GesteModule, GlobaleModule, FormsModule],
-  templateUrl: './page.component.html',
-  styleUrl: './page.component.css',
+    selector: 'app-page',
+    imports: [CommonModule, GesteModule, GlobaleModule, FormsModule],
+    templateUrl: './page.component.html',
+    styleUrl: './page.component.css'
 })
 export class PageComponent {
   habitantsNumber: number = 1;
