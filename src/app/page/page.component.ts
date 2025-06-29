@@ -1,7 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { GesteModule } from './geste/geste.module';
-import { GlobaleModule } from './globale/globale.module';
 import { FormsModule } from '@angular/forms';
 import {
   estimationEurosLists,
@@ -11,12 +9,14 @@ import {
   priceLists,
   workTypes,
 } from '../shared/data/data';
+import { GesteComponent } from './geste/geste.component';
+import { GlobaleComponent } from './globale/globale.component';
 
 @Component({
-    selector: 'app-page',
-    imports: [CommonModule, GesteModule, GlobaleModule, FormsModule],
-    templateUrl: './page.component.html',
-    styleUrl: './page.component.css'
+  selector: 'app-page',
+  imports: [CommonModule, GesteComponent, GlobaleComponent, FormsModule],
+  templateUrl: './page.component.html',
+  styleUrl: './page.component.css',
 })
 export class PageComponent {
   habitantsNumber: number = 1;
