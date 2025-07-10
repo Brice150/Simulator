@@ -23,6 +23,7 @@
 .main-container .left-container .title {
   font-weight: bold;
   font-size: 18px;
+  margin: 0;
   margin-bottom: 10px;
   text-align: center;
 }
