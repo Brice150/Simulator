@@ -2,43 +2,49 @@
 <img height="130px" width="130px" src="./src/assets/images/logo.png">
 </div>
   
-# Simulator, a house renovation subsidies calculator
+# Simulator, un simulateur de subventions pour la rénovation d’un logement
 
 Frontend : Angular
 
 <details>
-  <summary>Pages Features</summary>
+  <summary>Features</summary>
 
-### Form
+### 📝 Formulaire
 
-- Select the number of persons living with you, your yearly income and the type of work that needs to be made in order to make your home more eco-friendly
+- Sélection du nombre de personnes dans le foyer, des revenus annuels et du type de travaux à réaliser pour rendre le logement plus écologique
 
-### Globale
+---
 
-- View the percentage of renovation subsidies that can be applied in your case
+### 🌍 Global
 
-### Geste
+- Visualisation du pourcentage de subventions de rénovation applicable à votre situation
 
-- View the amount of renovation subsidies that can be applied in your case
+---
+
+### 🔧 Geste
+
+- Visualisation du montant des subventions de rénovation applicable selon les travaux réalisés
+
+---
 
 </details>
 
 <details>
-  <summary>Run Locally</summary>
+  <summary>Installation locale</summary>
 
-### Clone the project
+### Cloner le projet
 
 ```bash
-  git clone https://github.com/Brice150/Simulator.git
+  git clone https://github.com/Brice150/Life-Rise.git
 ```
 
-### Install dependencies
+### Installer les dépendances
 
 ```bash
   npm install
 ```
 
-### Start the server
+### Lancer l'application
 
 ```bash
   ng serve -o
