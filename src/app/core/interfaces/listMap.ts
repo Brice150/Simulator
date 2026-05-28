@@ -1,3 +1,1 @@
-export interface ListMap {
-  [key: number]: string[];
-}
+export type ListMap = Record<number, string[]>;

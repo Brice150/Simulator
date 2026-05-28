@@ -19,15 +19,15 @@ import { GlobaleComponent } from './globale/globale.component';
   styleUrl: './page.component.css',
 })
 export class PageComponent {
-  habitantsNumber: number = 1;
+  habitantsNumber = 1;
   price!: number | null;
   workType!: number | null;
-  displayGeste: boolean = false;
-  displayGlobale: boolean = false;
+  displayGeste = false;
+  displayGlobale = false;
   estimationEuros!: string;
   estimationPercent!: number;
-  globaleSelected: boolean = true;
-  gesteSelected: boolean = false;
+  globaleSelected = true;
+  gesteSelected = false;
   priceList: string[] = priceLists[1];
   increments: number[] = increments;
   latestPrices: number[] = latestPrices;
@@ -52,7 +52,7 @@ export class PageComponent {
     } else {
       this.increments = [...increments];
       this.latestPrices = [...latestPrices];
-      for (let i: number = 0; i < this.increments.length; i++) {
+      for (let i = 0; i < this.increments.length; i++) {
         this.latestPrices[i] =
           this.latestPrices[i] +
           this.increments[i] * (this.habitantsNumber - 5);
