@@ -90,7 +90,9 @@
   padding: 10px 0;
   width: 180px;
   text-align: center;
-  transition: 0.5s ease;
+  transition:
+    background-color 0.5s ease,
+    color 0.5s ease;
   color: var(--secondary-background);
   font-weight: bold;
   margin: 18px 0;

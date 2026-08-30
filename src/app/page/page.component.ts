@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
@@ -12,25 +11,25 @@ import {
 import { GesteComponent } from './geste/geste.component';
 import { GlobaleComponent } from './globale/globale.component';
 
+const REFERENCE_HABITANTS = 5;
+
 @Component({
   selector: 'app-page',
-  imports: [CommonModule, GesteComponent, GlobaleComponent, FormsModule],
+  imports: [GesteComponent, GlobaleComponent, FormsModule],
   templateUrl: './page.component.html',
   styleUrl: './page.component.css',
 })
 export class PageComponent {
   habitantsNumber = 1;
-  price!: number | null;
-  workType!: number | null;
+  price: number | null = null;
+  workType: number | null = null;
   displayGeste = false;
   displayGlobale = false;
-  estimationEuros!: string;
-  estimationPercent!: number;
+  estimationEuros = '';
+  estimationPercent = 0;
   globaleSelected = true;
   gesteSelected = false;
-  priceList: string[] = priceLists[1];
-  increments: number[] = increments;
-  latestPrices: number[] = latestPrices;
+  priceList: string[] = [...priceLists[1]];
   workTypes: string[] = workTypes;
 
   plusOne(): void {
@@ -46,21 +45,19 @@ export class PageComponent {
   }
 
   refreshPriceList(): void {
-    this.priceList = [];
-    if (this.habitantsNumber < 6) {
-      this.priceList = priceLists[this.habitantsNumber];
+    if (this.habitantsNumber <= REFERENCE_HABITANTS) {
+      this.priceList = [...priceLists[this.habitantsNumber]];
     } else {
-      this.increments = [...increments];
-      this.latestPrices = [...latestPrices];
-      for (let i = 0; i < this.increments.length; i++) {
-        this.latestPrices[i] =
-          this.latestPrices[i] +
-          this.increments[i] * (this.habitantsNumber - 5);
-      }
-      this.priceList[0] = `Inférieur à ${this.latestPrices[0]} €`;
-      this.priceList[1] = `Entre ${this.latestPrices[1]} € et ${this.latestPrices[2]} €`;
-      this.priceList[2] = `Entre ${this.latestPrices[3]} € et ${this.latestPrices[4]} €`;
-      this.priceList[3] = `Supérieur à ${this.latestPrices[4]} €`;
+      const extraHabitants = this.habitantsNumber - REFERENCE_HABITANTS;
+      const prices = latestPrices.map(
+        (latestPrice, index) => latestPrice + increments[index] * extraHabitants
+      );
+      this.priceList = [
+        `Inférieur à ${prices[0]} €`,
+        `Entre ${prices[1]} € et ${prices[2]} €`,
+        `Entre ${prices[3]} € et ${prices[4]} €`,
+        `Supérieur à ${prices[4]} €`,
+      ];
     }
     this.price = null;
     this.handleDisplay();
@@ -87,11 +84,15 @@ export class PageComponent {
   }
 
   handleDisplay(): void {
-    if (this.globaleSelected && this.price) {
+    if (this.globaleSelected && this.price !== null) {
       this.displayGeste = false;
       this.displayGlobale = true;
       this.estimationPercent = estimationPercentList[this.price];
-    } else if (this.gesteSelected && this.price && this.workType) {
+    } else if (
+      this.gesteSelected &&
+      this.price !== null &&
+      this.workType !== null
+    ) {
       this.displayGeste = true;
       this.displayGlobale = false;
       this.estimationEuros = estimationEurosLists[this.workType][this.price];

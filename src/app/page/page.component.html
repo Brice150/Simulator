@@ -3,42 +3,42 @@
     <h1 class="title">Estimez votre prime selon les travaux souhaités</h1>
     <hr />
     <div class="container">
-      <i class="bx bxs-group"></i>
+      <i class="bx bxs-group" aria-hidden="true"></i>
       <div class="content">
         <span>Indiquez le nombre de personnes vivant dans le logement</span>
         <div class="sub-container">
-          <div
+          <button
+            type="button"
             class="button change"
-            role="button"
-            tabindex="0"
+            aria-label="Retirer une personne"
             (click)="minusOne()"
-            (keydown.enter)="minusOne()"
-            (keydown.space)="minusOne()"
           >
-            <i class="bx bx-minus"></i>
-          </div>
-          <div class="number">{{ habitantsNumber }}</div>
-          <div
+            <i class="bx bx-minus" aria-hidden="true"></i>
+          </button>
+          <div class="number" aria-live="polite">{{ habitantsNumber }}</div>
+          <button
+            type="button"
             class="button change"
-            role="button"
-            tabindex="0"
+            aria-label="Ajouter une personne"
             (click)="plusOne()"
-            (keydown.enter)="plusOne()"
-            (keydown.space)="plusOne()"
           >
-            <i class="bx bx-plus"></i>
-          </div>
+            <i class="bx bx-plus" aria-hidden="true"></i>
+          </button>
         </div>
       </div>
     </div>
     <div class="container">
-      <i class="bx bxs-home"></i>
+      <i class="bx bxs-home" aria-hidden="true"></i>
       <div class="content">
-        <span>Indiquez le revenu fiscal de votre foyer</span>
+        <span id="price-label">Indiquez le revenu fiscal de votre foyer</span>
         <div class="sub-container">
-          <select [(ngModel)]="price" (ngModelChange)="priceChange()">
+          <select
+            aria-labelledby="price-label"
+            [(ngModel)]="price"
+            (ngModelChange)="priceChange()"
+          >
             @for (value of priceList; track value; let index = $index) {
-              <option [value]="index">
+              <option [ngValue]="index">
                 {{ value }}
               </option>
             }
@@ -47,43 +47,43 @@
       </div>
     </div>
     <div class="container">
-      <i class="bx bxs-briefcase-alt-2"></i>
+      <i class="bx bxs-briefcase-alt-2" aria-hidden="true"></i>
       <div class="content">
         <span>Votre projet</span>
         <div class="sub-container">
-          <div
-            class="button choose selected"
-            role="button"
-            tabindex="0"
-            [ngClass]="{ selected: globaleSelected }"
+          <button
+            type="button"
+            class="button choose"
+            [class.selected]="globaleSelected"
+            [attr.aria-pressed]="globaleSelected"
             (click)="selectGlobale()"
-            (keydown.enter)="selectGlobale()"
-            (keydown.space)="selectGlobale()"
           >
             <span>Rénovation globale</span>
-          </div>
-          <div
+          </button>
+          <button
+            type="button"
             class="button choose"
-            role="button"
-            tabindex="0"
-            [ngClass]="{ selected: gesteSelected }"
+            [class.selected]="gesteSelected"
+            [attr.aria-pressed]="gesteSelected"
             (click)="selectGeste()"
-            (keydown.enter)="selectGeste()"
-            (keydown.space)="selectGeste()"
           >
             <span>Par geste</span>
-          </div>
+          </button>
         </div>
       </div>
     </div>
     @if (gesteSelected) {
       <div class="container">
         <div class="content">
-          <span>Choisissez le type de travaux</span>
+          <span id="work-type-label">Choisissez le type de travaux</span>
           <div class="sub-container">
-            <select [(ngModel)]="workType" (ngModelChange)="workTypeChange()">
+            <select
+              aria-labelledby="work-type-label"
+              [(ngModel)]="workType"
+              (ngModelChange)="workTypeChange()"
+            >
               @for (value of workTypes; track value; let index = $index) {
-                <option [value]="index">
+                <option [ngValue]="index">
                   {{ value }}
                 </option>
               }
@@ -94,7 +94,7 @@
     }
   </div>
   @if (displayGeste || displayGlobale) {
-    <div class="right-container">
+    <div class="right-container" role="status">
       @if (displayGlobale) {
         <app-globale [estimationPercent]="estimationPercent"></app-globale>
       }
