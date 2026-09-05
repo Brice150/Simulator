@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   estimationEurosLists,
@@ -18,6 +18,7 @@ const REFERENCE_HABITANTS = 5;
   imports: [GesteComponent, GlobaleComponent, FormsModule],
   templateUrl: './page.component.html',
   styleUrl: './page.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageComponent {
   habitantsNumber = 1;

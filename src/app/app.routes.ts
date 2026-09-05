@@ -3,5 +3,5 @@ import { PageComponent } from './page/page.component';
 
 export const routes: Routes = [
   { path: '', component: PageComponent },
-  { path: '**', component: PageComponent },
+  { path: '**', redirectTo: '' },
 ];
