@@ -5,6 +5,8 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  # Permet de relancer la publication à la main depuis l'onglet Actions.
+  workflow_dispatch:
 
 # Un nouveau push sur une branche annule l'exécution encore en cours pour cette
 # branche, sauf sur main où le déploiement qui suit ne doit pas être interrompu.
