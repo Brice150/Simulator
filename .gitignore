@@ -43,3 +43,6 @@ Thumbs.db
 
 # Sortie de build, publiée par la CI comme artefact GitHub Pages.
 /docs
+
+# Réglages locaux de Claude Code
+/.claude
