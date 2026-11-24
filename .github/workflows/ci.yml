@@ -49,7 +49,7 @@ jobs:
       # qu'à elle).
       - name: Restore node_modules
         id: modules
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: node_modules
           key: modules-${{ runner.os }}-node22-${{ hashFiles('package-lock.json') }}
@@ -62,7 +62,7 @@ jobs:
       # dans angular.json) : les builds et les tests suivants repartent de la
       # compilation précédente.
       - name: Restore Angular cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: .angular/cache
           key: angular-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-${{ github.sha }}
@@ -108,7 +108,7 @@ jobs:
 
       - name: Restore node_modules
         id: modules
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: node_modules
           key: modules-${{ runner.os }}-node22-${{ hashFiles('package-lock.json') }}
@@ -118,7 +118,7 @@ jobs:
         run: npm ci
 
       - name: Restore Angular cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: .angular/cache
           key: angular-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-${{ github.sha }}
@@ -131,13 +131,13 @@ jobs:
       - name: Build
         run: npm run build
 
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: docs
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
